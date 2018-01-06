@@ -25,7 +25,7 @@ class StepSelect:
 
 
 class Backlight:
-  def __init__(self, bdir: str, maxbr: object = int):
+  def __init__(self, bdir: str, maxbr = None):
     self.brightness_file = bdir + "/brightness"
     self.max_brightness_file = bdir + "/max_brightness"
     self.brightness = None
