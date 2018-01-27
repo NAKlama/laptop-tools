@@ -18,3 +18,8 @@ I integreted this in my **i3** config:
 ## screen-switcher.py
 
 Tool for switching to different screen configurations.
+
+
+## rotate-desktop.sh
+
+Original source: https://gist.github.com/48e9025070a2ba40795c.git
