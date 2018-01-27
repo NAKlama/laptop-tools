@@ -40,25 +40,30 @@ class Xrandr:
         self.activeScreens.append(match.group(1))
 
   def switch(self, num: int):
+    if num >= len(self.config):
+      raise OverflowError
     this_conf = self.config[num]
     for group in this_conf:
       keyword, master, *screens = group
-      subprocess.run(self.xrandr, "--output", s, "--auto")
+      subprocess.run([self.xrandr, "--output", master, "--auto"])
       if keyword == "mirror":
         for s in screens:
-          subprocess.run(self.xrandr, "--output", s, "--auto", "--mirror", master)
+          subprocess.run([self.xrandr, "--output", s, "--auto", "--same-as", master])
       elif keyword == "right":
         for s in screens:
-          subprocess.run(self.xrandr, "--output", s, "--auto", "--right-of", master)
+          subprocess.run([self.xrandr, "--output", s, "--auto", "--right-of", master])
           master = s
       elif keyword == "left":
         for s in screens:
-          subprocess.run(self.xrandr, "--output", s, "--auto", "--left-of", master)
+          subprocess.run([self.xrandr, "--output", s, "--auto", "--left-of", master])
           master = s
-      elif keyword == "off":
-        subprocess.run(self.xrandr, "--output", master, "--off")
+      elif keyword == "off" or not keyword:
+        subprocess.run([self.xrandr, "--output", master, "--off"])
         for s in screens:
-          subprocess.run(self.xrandr, "--output", s, "--off")
+          subprocess.run([self.xrandr, "--output", s, "--off"])
+      elif keyword == "on" or keyword:
+        for s in screens:
+          subprocess.run([self.xrandr, "--output", s, "--auto"])
 
 
 if __name__ == "__main__":
@@ -74,7 +79,7 @@ if __name__ == "__main__":
     if s not in config['screens']:
       config['screens'].append(s)
 
-  if config['current']+1 >= len(seq):
+  if config['current']+1 >= len(config['config']):
     config['current'] = 0
   else:
     config['current'] += 1
