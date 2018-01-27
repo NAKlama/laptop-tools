@@ -7,7 +7,7 @@ import yaml
 try:
   from yaml import CLoader as YamlLoader, CDumper as YamlDumper
 except ImportError:
-  from yaml import Loader as YamlLoader, Dumper as YamlDumper
+  from yaml import Loader as YamlLoader, Dumper as YamlDumpetr
 from typing import List
 
 #
