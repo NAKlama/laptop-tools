@@ -23,3 +23,6 @@ Tool for switching to different screen configurations.
 ## rotate-desktop.sh
 
 Original source: https://gist.github.com/48e9025070a2ba40795c.git
+Original author: https://gist.github.com/mildmojo
+
+I just modified this for my own laptop.
