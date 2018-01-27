@@ -27,7 +27,7 @@ default_config = { 'xrandr':      "xrandr"
 
 
 class Xrandr:
-  def __init__(self, prog: str, config_in: List[List[List[str]]] = []):
+  def __init__(self, prog: str, config_in: List[List[List[str]]]):
     self.xrandr         = prog
     self.activeScreens  = []
     self.config         = config_in
@@ -75,9 +75,9 @@ if __name__ == "__main__":
 
   Xr  = Xrandr(config['xrandr'], config['config'])
 
-  for s in Xr.activeScreens:
-    if s not in config['screens']:
-      config['screens'].append(s)
+  for screen in Xr.activeScreens:
+    if screen not in config['screens']:
+      config['screens'].append(screen)
 
   if config['current']+1 >= len(config['config']):
     config['current'] = 0
